@@ -58,11 +58,27 @@ body {
     padding: 20px;
     border-radius: 12px;
     border: 2px solid gold;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    animation: fadeIn 1.2s forwards ease-out;
 }
 
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 25px gold;
+}
+
+/* IMAGE + GLOW */
 .product-image img {
     width: 100%;
     border-radius: 10px;
+    animation: goldGlow 3s infinite ease-in-out;
+}
+
+@keyframes goldGlow {
+    0% { box-shadow: 0 0 10px gold; }
+    50% { box-shadow: 0 0 25px gold; }
+    100% { box-shadow: 0 0 10px gold; }
 }
 
 .product-desc {
@@ -96,4 +112,17 @@ body {
     width: 200px;
     margin: 20px auto;
     border-radius: 10px;
+    opacity: 0;
+    animation: fadeIn 1.2s forwards ease-out;
+}
+
+/* FADE-IN */
+.hero-text {
+    opacity: 0;
+    animation: fadeIn 1.2s forwards ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
