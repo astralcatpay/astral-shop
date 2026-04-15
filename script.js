@@ -11,10 +11,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelectorAll("a").forEach(link => {
         if (link.href && !link.href.includes("#") && !link.classList.contains("limited-btn")) {
+
             link.addEventListener("click", e => {
+                const url = link.href; // Opera-friendly
+
+                if (!url) return;
+
                 e.preventDefault();
                 transition.classList.add("active");
-                setTimeout(() => window.location = link.href, 500);
+
+                // Redirection compatible Opera
+                setTimeout(() => {
+                    window.location.href = url;
+                }, 300);
             });
         }
     });
@@ -64,7 +73,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 btn.style.pointerEvents = "none";
             }
 
-            window.location = "https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=lucas.mathieupro01@gmail.com&item_name=First%20Cat&amount=2&currency_code=EUR&return=merci.html?role=firstcat";
+            window.location.href =
+                "https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=lucas.mathieupro01@gmail.com&item_name=First%20Cat&amount=2&currency_code=EUR&return=merci.html?role=firstcat";
         });
     });
 
