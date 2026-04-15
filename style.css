@@ -1,3 +1,6 @@
+/* ===========================
+   BASE
+=========================== */
 body {
     background: #0d0d0d;
     color: white;
@@ -7,7 +10,9 @@ body {
     text-align: center;
 }
 
-/* HEADER */
+/* ===========================
+   HEADER
+=========================== */
 .topbar {
     display: flex;
     justify-content: space-between;
@@ -32,7 +37,9 @@ body {
     font-weight: bold;
 }
 
-/* HERO */
+/* ===========================
+   HERO
+=========================== */
 .hero {
     padding: 60px 20px;
 }
@@ -45,7 +52,9 @@ body {
     margin-top: 40px;
 }
 
-/* PRODUCT CARD */
+/* ===========================
+   PRODUCT CARD
+=========================== */
 .products-grid {
     display: flex;
     justify-content: center;
@@ -97,7 +106,9 @@ body {
     color: gold;
 }
 
-/* BUTTON */
+/* ===========================
+   BUTTON
+=========================== */
 .btn-primary {
     background: gold;
     color: black;
@@ -105,19 +116,79 @@ body {
     border-radius: 6px;
     text-decoration: none;
     font-weight: bold;
+    transition: 0.2s ease;
 }
 
-/* MERCI PAGE IMAGE */
-.merci-img {
-    width: 200px;
-    margin: 20px auto;
-    border-radius: 10px;
-    opacity: 0;
+.btn-primary:hover {
+    background: #ffd700;
+    box-shadow: 0 0 15px gold;
+}
+
+/* ===========================
+   PAGE MERCI PREMIUM
+=========================== */
+.merci-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+}
+
+.merci-box {
+    width: 100%;
+    max-width: 600px;
+    background: #1a1a1a;
+    padding: 40px;
+    border-radius: 15px;
+    border: 2px solid gold;
+    box-shadow: 0 0 25px gold;
+    text-align: center;
     animation: fadeIn 1.2s forwards ease-out;
 }
 
-/* FADE-IN */
-.hero-text {
+.merci-title {
+    font-size: 32px;
+    color: gold;
+    margin-bottom: 20px;
+    animation: goldGlow 3s infinite ease-in-out;
+}
+
+/* Cadres premium */
+.merci-text-box {
+    background: #111;
+    border: 2px solid gold;
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin: 15px 0;
+}
+
+.merci-text-box p {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+/* Image centrée */
+.merci-img {
+    width: 250px;
+    border-radius: 12px;
+    margin: 25px auto;
+    display: block;
+    animation: goldGlow 3s infinite ease-in-out;
+}
+
+/* Bouton centré */
+.merci-btn {
+    display: inline-block;
+    margin-top: 20px;
+}
+
+/* ===========================
+   FADE-IN ANIMATION
+=========================== */
+.hero-text,
+.merci-img,
+.product-card {
     opacity: 0;
     animation: fadeIn 1.2s forwards ease-out;
 }
