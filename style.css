@@ -58,6 +58,8 @@ body {
 .products-grid {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
     padding: 20px;
 }
 
@@ -340,3 +342,16 @@ body {
     100% { left: 120%; }
 }
 
+
+/* BADGE STOCK */
+.stock-badge {
+    display: inline-block;
+    background: gold;
+    color: black;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    box-shadow: 0 0 12px gold;
+    animation: goldGlow 3s infinite ease-in-out;
+}

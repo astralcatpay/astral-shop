@@ -13,14 +13,13 @@ document.addEventListener("DOMContentLoaded", () => {
         if (link.href && !link.href.includes("#") && !link.classList.contains("limited-btn")) {
 
             link.addEventListener("click", e => {
-                const url = link.href; // Opera-friendly
+                const url = link.href;
 
                 if (!url) return;
 
                 e.preventDefault();
                 transition.classList.add("active");
 
-                // Redirection compatible Opera
                 setTimeout(() => {
                     window.location.href = url;
                 }, 300);
@@ -47,35 +46,35 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // ===========================
-    // RÔLE LIMITÉ À 3 ACHATS
+    // STOCK FIRST CAT
     // ===========================
-    document.querySelectorAll(".limited-btn").forEach(btn => {
-        const role = btn.dataset.role;
-        const limit = parseInt(btn.dataset.limit);
+    const btn = document.querySelector(".limited-btn");
+    const badge = document.getElementById("firstcat-stock");
 
-        let count = parseInt(localStorage.getItem("buy_" + role)) || 0;
+    if (!btn || !badge) return; // Sécurité
 
-        if (count >= limit) {
-            btn.textContent = "Indisponible";
-            btn.style.background = "gray";
-            btn.style.cursor = "not-allowed";
-            btn.style.pointerEvents = "none";
-        }
+    const limit = 3;
+    const count = parseInt(localStorage.getItem("buy_firstcat")) || 0;
+    const remaining = Math.max(limit - count, 0);
 
-        btn.addEventListener("click", () => {
-            count++;
-            localStorage.setItem("buy_" + role, count);
+    // Mise à jour du badge
+    badge.textContent = remaining > 0 ? `Restant : ${remaining}` : "Épuisé";
 
-            if (count >= limit) {
-                btn.textContent = "Indisponible";
-                btn.style.background = "gray";
-                btn.style.cursor = "not-allowed";
-                btn.style.pointerEvents = "none";
-            }
+    // Si plus de stock → bouton bloqué
+    if (remaining <= 0) {
+        btn.textContent = "Indisponible";
+        btn.style.background = "gray";
+        btn.style.cursor = "not-allowed";
+        btn.style.pointerEvents = "none";
+        return;
+    }
 
-            window.location.href =
-                "https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=lucas.mathieupro01@gmail.com&item_name=First%20Cat&amount=2&currency_code=EUR&return=merci.html?role=firstcat";
-        });
+    // ===========================
+    // REDIRECTION PAYPAL
+    // ===========================
+    btn.addEventListener("click", () => {
+        window.location.href =
+            "https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=lucas.mathieupro01@gmail.com&item_name=First%20Cat&amount=2&currency_code=EUR&return=https://lucasmathieupro01-boop.github.io/astral-shop/merci.html?role=firstcat";
     });
 
 });

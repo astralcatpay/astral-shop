@@ -1,73 +1,78 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Merci pour ton achat ✨</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+document.addEventListener("DOMContentLoaded", () => {
 
-  <link rel="icon" type="image/jpg" href="image.jpg">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    // ===========================
+    // TRANSITION DE PAGE PREMIUM
+    // ===========================
+    const transition = document.createElement("div");
+    transition.classList.add("page-transition");
+    document.body.appendChild(transition);
 
-<div class="gold-particles">
-  <span style="left:10%; animation-delay:0s;"></span>
-  <span style="left:30%; animation-delay:1s;"></span>
-  <span style="left:50%; animation-delay:2s;"></span>
-  <span style="left:70%; animation-delay:3s;"></span>
-  <span style="left:90%; animation-delay:4s;"></span>
-</div>
+    setTimeout(() => transition.classList.remove("active"), 100);
 
-<div class="merci-wrapper">
+    document.querySelectorAll("a").forEach(link => {
+        if (link.href && !link.href.includes("#") && !link.classList.contains("limited-btn")) {
 
-  <div class="merci-box">
-    <h1 class="merci-title gold-title-anim">Merci pour ton achat ✨</h1>
+            link.addEventListener("click", e => {
+                const url = link.href;
 
-    <div class="merci-text-box">
-      <p id="role-name">Chargement du rôle acheté...</p>
-    </div>
+                if (!url) return;
 
-    <div class="merci-text-box">
-      <p>
-        Ton soutien renforce le royaume Astral et permet au serveur de briller davantage.
-      </p>
-    </div>
+                e.preventDefault();
+                transition.classList.add("active");
 
-    <div class="merci-text-box">
-      <p>
-        Pour obtenir ton rôle, ouvre un ticket et contacte un membre divin  
-        en fournissant une preuve de paiement.
-      </p>
-    </div>
+                setTimeout(() => {
+                    window.location.href = url;
+                }, 300);
+            });
+        }
+    });
 
-    <img id="role-image" src="roi_mage.jpg" alt="Rôle acheté" class="merci-img">
+    // ===========================
+    // FILTRE PAR CATÉGORIE
+    // ===========================
+    document.querySelectorAll(".cat-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
 
-    <a class="btn-primary merci-btn" href="index.html">Retour à la boutique</a>
-  </div>
+            const cat = btn.dataset.category;
 
-</div>
+            document.querySelectorAll(".product-card").forEach(card => {
+                card.style.display = (cat === "all" || card.dataset.category === cat)
+                    ? "block"
+                    : "none";
+            });
+        });
+    });
 
-<script>
-  const params = new URLSearchParams(window.location.search);
-  const role = params.get("role");
+    // ===========================
+    // STOCK FIRST CAT (affichage)
+    // ===========================
+    const limit = 3;
+    const count = parseInt(localStorage.getItem("buy_firstcat")) || 0;
+    const remaining = Math.max(limit - count, 0);
 
-  const roleName = document.getElementById("role-name");
-  const roleImage = document.getElementById("role-image");
+    const badge = document.getElementById("firstcat-stock");
+    const btn = document.querySelector(".limited-btn");
 
-  if (role === "roi_mage") {
-    roleName.textContent = "Tu as acheté le rôle Rois‑Mages ✨";
-    roleImage.src = "roi_mage.jpg";
-  } else if (role === "chouchou") {
-    roleName.textContent = "Tu as acheté le rôle 𝐿𝑒𝓈 𝒸𝒽𝑜𝓊𝒸𝒽𝑜𝓊𝓈 🧸";
-    roleImage.src = "chouchou.jpg";
-  } else if (role === "firstcat") {
-    roleName.textContent = "Tu as acheté le rôle First Cat ①";
-    roleImage.src = "first_cat.jpg";
-  } else {
-    roleName.textContent = "Rôle inconnu — vérifie ton achat.";
-  }
-</script>
+    if (badge) {
+        badge.textContent = remaining > 0 ? `Restant : ${remaining}` : "Épuisé";
+    }
 
-<script src="script.js"></script>
-</body>
-</html>
+    if (remaining <= 0) {
+        btn.textContent = "Indisponible";
+        btn.style.background = "gray";
+        btn.style.cursor = "not-allowed";
+        btn.style.pointerEvents = "none";
+        return; // On bloque le bouton
+    }
+
+    // ===========================
+    // REDIRECTION PAYPAL (clic)
+    // ===========================
+    btn.addEventListener("click", () => {
+        window.location.href =
+            "https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=lucas.mathieupro01@gmail.com&item_name=First%20Cat&amount=2&currency_code=EUR&return=https://lucasmathieupro01-boop.github.io/astral-shop/merci.html?role=firstcat";
+    });
+
+});
