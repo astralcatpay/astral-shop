@@ -263,3 +263,80 @@ body {
 .page-transition.active {
     opacity: 1;
 }
+
+/* ===========================
+   CATÉGORIES
+=========================== */
+.categories {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.cat-btn {
+    background: #111;
+    border: 2px solid gold;
+    color: gold;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.cat-btn:hover {
+    background: gold;
+    color: black;
+}
+
+.cat-btn.active {
+    background: gold;
+    color: black;
+}
+
+/* ===========================
+   TITRE HERO PREMIUM ANIMÉ
+=========================== */
+.hero-title-anim {
+    font-size: 42px;
+    font-weight: bold;
+    background: linear-gradient(90deg, gold, #fff4c2, gold);
+    -webkit-background-clip: text;
+    color: transparent;
+    position: relative;
+    display: inline-block;
+    animation: heroGlow 3s ease-in-out infinite, heroFloat 4s ease-in-out infinite;
+}
+
+/* Glow pulsé */
+@keyframes heroGlow {
+    0% { text-shadow: 0 0 10px gold; }
+    50% { text-shadow: 0 0 25px gold; }
+    100% { text-shadow: 0 0 10px gold; }
+}
+
+/* Léger mouvement flottant */
+@keyframes heroFloat {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Effet de lumière qui traverse */
+.hero-title-anim::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+    animation: shineSlide 2.8s linear infinite;
+}
+
+@keyframes shineSlide {
+    0% { left: -100%; }
+    100% { left: 120%; }
+}
+

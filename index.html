@@ -5,9 +5,7 @@
   <title>Astral Shop - Rôles Discord</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Favicon -->
   <link rel="icon" type="image/jpg" href="image.jpg">
-
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -30,20 +28,27 @@
 </header>
 
 <main>
+
   <section class="hero">
     <div class="hero-text">
-      <h1>Rôles Discord Premium</h1>
+      <h1 class="hero-title-anim">Rôles Discord Premium ✨</h1>
       <p>Achète ton rôle instantanément via PayPal.</p>
     </div>
   </section>
 
-  <section id="products" class="section">
-    <h2>Rôle disponible</h2>
+  <!-- ⭐⭐ CATÉGORIES ⭐⭐ -->
+  <section class="categories">
+    <button class="cat-btn active" data-category="all">Tous</button>
+    <button class="cat-btn" data-category="vip">Rôles VIP</button>
+    <button class="cat-btn" data-category="event">Rôles événementiels</button>
+    <button class="cat-btn" data-category="staff">Staff</button>
+  </section>
 
+  <section id="products" class="section">
     <div class="products-grid">
 
-      <!-- ⭐ RÔLE ROIS-MAGES -->
-      <article class="product-card">
+      <!-- ⭐ STAFF : ROIS-MAGES -->
+      <article class="product-card" data-category="staff">
         <div class="product-image">
           <img src="roi_mage.jpg" alt="Rôle Rois-Mages">
         </div>
@@ -56,7 +61,6 @@
 
         <div class="product-footer">
           <span class="price">20€</span>
-
           <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=lucas.mathieupro01@gmail.com&item_name=Rois-Mages%20%E2%9C%A8&amount=20&currency_code=EUR&return=https://lucasmathieupro01-boop.github.io/astral-shop/merci.html" 
              class="btn-primary">
             Acheter
@@ -64,8 +68,49 @@
         </div>
       </article>
 
+      <!-- ⭐ VIP : Les chouchous -->
+      <article class="product-card" data-category="vip">
+        <div class="product-image">
+          <img src="nounours.jpg" alt="Les chouchous">
+        </div>
+
+        <h3>𝐿𝑒𝓈 𝒸𝒽𝑜𝓊𝒸𝒽𝑜𝓊𝓈 🧸</h3>
+        <p class="product-desc">
+          Accès à des événements exclusifs réservés aux membres VIP.
+        </p>
+
+        <div class="product-footer">
+          <span class="price">10€</span>
+          <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=lucas.mathieupro01@gmail.com&item_name=Les%20Chouchous&amount=10&currency_code=EUR&return=https://lucasmathieupro01-boop.github.io/astral-shop/merci.html" 
+             class="btn-primary">
+            Acheter
+          </a>
+        </div>
+      </article>
+
+      <!-- ⭐ ÉVÉNEMENTIEL : First Cat (limité à 3 achats) -->
+      <article class="product-card" data-category="event">
+        <div class="product-image">
+          <img src="chat.jpg" alt="First Cat">
+        </div>
+
+        <h3>𝐹𝒾𝓇𝓈𝓉 𝒞𝒶𝓉 ①</h3>
+        <p class="product-desc">
+          Rôle événementiel unique.  
+          Disponible seulement 3 fois.
+        </p>
+
+        <div class="product-footer">
+          <span class="price">2€</span>
+          <a class="btn-primary limited-btn" data-limit="3" data-role="firstcat">
+            Acheter
+          </a>
+        </div>
+      </article>
+
     </div>
   </section>
+
 </main>
 
 <script src="script.js"></script>
