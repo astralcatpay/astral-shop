@@ -266,6 +266,12 @@ body {
     z-index: 5;
 }
 
+.creator-footer .dot {
+    margin: 0 8px;
+    color: gold;
+    font-weight: bold;
+}
+
 /* ===========================
    ANIMATIONS
 =========================== */
