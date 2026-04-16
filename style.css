@@ -20,6 +20,8 @@ body {
     padding: 15px 25px;
     background: #111;
     border-bottom: 2px solid gold;
+    position: relative;
+    z-index: 5;
 }
 
 .logo {
@@ -44,226 +46,25 @@ body {
     padding: 60px 20px;
 }
 
-.hero-text h1 {
-    font-size: 32px;
-}
-
-.section h2 {
-    margin-top: 40px;
-}
-
-/* ===========================
-   PRODUCT CARD
-=========================== */
-.products-grid {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 25px;
-    padding: 20px;
-}
-
-.product-card {
-    background: #1a1a1a;
-    width: 320px;
-    padding: 20px;
-    border-radius: 12px;
-    border: 2px solid gold;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    opacity: 0;
-    animation: fadeIn 1.2s forwards ease-out;
-    position: relative;
-    z-index: 3;
-}
-
-.product-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 0 25px gold;
-}
-
-/* IMAGE + GLOW */
-.product-image img {
-    width: 100%;
-    border-radius: 10px;
-    animation: goldGlow 3s infinite ease-in-out;
-}
-
-@keyframes goldGlow {
-    0% { box-shadow: 0 0 10px gold; }
-    50% { box-shadow: 0 0 25px gold; }
-    100% { box-shadow: 0 0 10px gold; }
-}
-
-.product-desc {
-    margin: 15px 0;
-}
-
-.product-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.price {
-    font-size: 20px;
+.hero-title-anim {
+    font-size: 42px;
     font-weight: bold;
-    color: gold;
+    background: linear-gradient(90deg, gold, #fff4c2, gold);
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: heroGlow 3s ease-in-out infinite, heroFloat 4s ease-in-out infinite;
 }
 
-/* ===========================
-   BUTTON
-=========================== */
-.btn-primary {
-    background: gold;
-    color: black;
-    padding: 12px 22px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-    display: inline-block;
-    position: relative;
-    z-index: 3;
+@keyframes heroGlow {
+    0% { text-shadow: 0 0 10px gold; }
+    50% { text-shadow: 0 0 25px gold; }
+    100% { text-shadow: 0 0 10px gold; }
 }
 
-.btn-primary:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 20px gold;
-}
-
-/* ===========================
-   PAGE MERCI PREMIUM
-=========================== */
-.merci-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 60px 20px;
-}
-
-.merci-box {
-    width: 100%;
-    max-width: 600px;
-    background: #1a1a1a;
-    padding: 40px;
-    border-radius: 15px;
-    border: 2px solid gold;
-    box-shadow: 0 0 25px gold;
-    text-align: center;
-    animation: fadeIn 1.2s forwards ease-out;
-    position: relative;
-    z-index: 3;
-}
-
-.merci-title {
-    font-size: 32px;
-    color: gold;
-    margin-bottom: 20px;
-    animation: goldGlow 3s infinite ease-in-out;
-}
-
-/* Cadres premium */
-.merci-text-box {
-    background: #111;
-    border: 2px solid gold;
-    padding: 15px 20px;
-    border-radius: 10px;
-    margin: 15px 0;
-}
-
-.merci-text-box p {
-    margin: 0;
-    font-size: 18px;
-    line-height: 1.5;
-}
-
-/* Image centrée */
-.merci-img {
-    width: 250px;
-    border-radius: 12px;
-    margin: 25px auto;
-    display: block;
-    animation: goldGlow 3s infinite ease-in-out;
-}
-
-/* Bouton centré */
-.merci-btn {
-    display: inline-block;
-    margin-top: 20px;
-}
-
-/* ===========================
-   FADE-IN ANIMATION
-=========================== */
-.hero-text,
-.merci-img,
-.product-card {
-    opacity: 0;
-    animation: fadeIn 1.2s forwards ease-out;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* ===========================
-   PARTICULES D'OR
-=========================== */
-.gold-particles {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    overflow: hidden;
-    z-index: 1;
-}
-
-.gold-particles span {
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    background: gold;
-    border-radius: 50%;
-    opacity: 0.8;
-    animation: floatUp 6s linear infinite;
-    filter: blur(1px);
-}
-
-@keyframes floatUp {
-    0% {
-        transform: translateY(100vh) translateX(0);
-        opacity: 0;
-    }
-    20% {
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-10vh) translateX(20px);
-        opacity: 0;
-    }
-}
-
-/* ===========================
-   TRANSITION DE PAGE
-=========================== */
-.page-transition {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(255,215,0,0.15), rgba(0,0,0,1));
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.6s ease;
-    z-index: 9999;
-}
-
-.page-transition.active {
-    opacity: 1;
+@keyframes heroFloat {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0px); }
 }
 
 /* ===========================
@@ -292,62 +93,97 @@ body {
     color: black;
 }
 
-.cat-btn.active {
-    background: gold;
-    color: black;
+/* ⭐ COULEURS PAR CATÉGORIE (OPERA SAFE) ⭐ */
+.active-vip {
+    background: #8b5cf6 !important;
+    box-shadow: 0 0 10px #8b5cf6 !important;
+}
+
+.active-event {
+    background: #3b82f6 !important;
+    box-shadow: 0 0 10px #3b82f6 !important;
+}
+
+.active-staff {
+    background: #ef4444 !important;
+    box-shadow: 0 0 10px #ef4444 !important;
+}
+
+.active-all {
+    background: gold !important;
+    color: black !important;
+    box-shadow: 0 0 10px gold !important;
 }
 
 /* ===========================
-   TITRE HERO PREMIUM ANIMÉ
+   PRODUITS
 =========================== */
-.hero-title-anim {
-    font-size: 42px;
-    font-weight: bold;
-    background: linear-gradient(90deg, gold, #fff4c2, gold);
-    -webkit-background-clip: text;
-    color: transparent;
+.products-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    padding: 20px;
+}
+
+.product-card {
+    background: #1a1a1a;
+    width: 320px;
+    padding: 20px;
+    border-radius: 12px;
+    border: 2px solid gold;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    animation: fadeIn 1.2s forwards ease-out;
     position: relative;
-    display: inline-block;
-    animation: heroGlow 3s ease-in-out infinite, heroFloat 4s ease-in-out infinite;
+    z-index: 3;
 }
 
-/* Glow pulsé */
-@keyframes heroGlow {
-    0% { text-shadow: 0 0 10px gold; }
-    50% { text-shadow: 0 0 25px gold; }
-    100% { text-shadow: 0 0 10px gold; }
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 25px gold;
 }
 
-/* Léger mouvement flottant */
-@keyframes heroFloat {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-6px); }
-    100% { transform: translateY(0px); }
+.product-image img {
+    width: 100%;
+    border-radius: 10px;
+    animation: goldGlow 3s infinite ease-in-out;
 }
 
-/* Effet de lumière qui traverse */
-.hero-title-anim::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 60%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
-    animation: shineSlide 2.8s linear infinite;
+@keyframes goldGlow {
+    0% { box-shadow: 0 0 10px gold; }
+    50% { box-shadow: 0 0 25px gold; }
+    100% { box-shadow: 0 0 10px gold; }
 }
 
-@keyframes shineSlide {
-    0% { left: -100%; }
-    100% { left: 120%; }
+.product-desc {
+    margin: 15px 0;
 }
 
+.product-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-/* BADGE STOCK */
+.price {
+    font-size: 20px;
+    font-weight: bold;
+    color: gold;
+}
+
+/* Bordures selon catégorie */
+.product-card[data-category="vip"] { border-color: #8b5cf6; }
+.product-card[data-category="event"] { border-color: #3b82f6; }
+.product-card[data-category="staff"] { border-color: #ef4444; }
+
+/* ===========================
+   BADGE STOCK
+=========================== */
 .stock-badge {
     display: inline-block;
-    background: gold !important;
-    color: black !important;
+    background: gold;
+    color: black;
     padding: 6px 12px;
     border-radius: 8px;
     font-weight: bold;
@@ -355,46 +191,85 @@ body {
     box-shadow: 0 0 12px gold;
     animation: goldGlow 3s infinite ease-in-out;
     font-size: 16px;
+}
+
+/* ===========================
+   BOUTONS
+=========================== */
+.btn-primary {
+    background: gold;
+    color: black;
+    padding: 12px 22px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px gold;
+}
+
+/* ===========================
+   PARTICULES D'OR
+=========================== */
+.gold-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.gold-particles span {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: gold;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: floatUp 6s linear infinite;
+    filter: blur(1px);
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(100vh); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+/* ===========================
+   FOOTER PREMIUM
+=========================== */
+.footer-separator {
+    width: 80%;
+    height: 2px;
+    background: gold;
+    margin: 60px auto 25px auto;
+    opacity: 0.7;
+    border-radius: 2px;
+    position: relative;
+    z-index: 5;
+}
+
+.creator-footer {
+    text-align: center;
+    font-size: 16px;
+    color: gold;
+    opacity: 0.9;
+    margin-bottom: 40px;
     position: relative;
     z-index: 5;
 }
 
 /* ===========================
-   COULEURS PAR CATÉGORIE (VIP / EVENT / STAFF / ALL)
-   =========================== */
-
-/* Boutons catégories */
-.cat-btn[data-category="vip"].active {
-    background: #8b5cf6;
-    box-shadow: 0 0 10px #8b5cf6;
+   ANIMATIONS
+=========================== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
-
-.cat-btn[data-category="event"].active {
-    background: #3b82f6;
-    box-shadow: 0 0 10px #3b82f6;
-}
-
-.cat-btn[data-category="staff"].active {
-    background: #ef4444;
-    box-shadow: 0 0 10px #ef4444;
-}
-
-.cat-btn[data-category="all"].active {
-    background: gold;
-    box-shadow: 0 0 10px gold;
-}
-
-/* Bordures des cartes selon catégorie */
-.product-card[data-category="vip"] {
-    border: 1px solid #8b5cf6;
-}
-
-.product-card[data-category="event"] {
-    border: 1px solid #3b82f6;
-}
-
-.product-card[data-category="staff"] {
-    border: 1px solid #ef4444;
-}
-
-
