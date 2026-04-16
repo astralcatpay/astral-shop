@@ -359,4 +359,41 @@ body {
     z-index: 5;
 }
 
+/* ===========================
+   COULEURS PAR CATÉGORIE
+   =========================== */
+
+/* Boutons catégories */
+.cat-btn[data-category="vip"].active {
+    background: #8b5cf6;
+    box-shadow: 0 0 10px #8b5cf6;
 }
+
+.cat-btn[data-category="event"].active {
+    background: #3b82f6;
+    box-shadow: 0 0 10px #3b82f6;
+}
+
+.cat-btn[data-category="staff"].active {
+    background: #ef4444;
+    box-shadow: 0 0 10px #ef4444;
+}
+
+.cat-btn[data-category="all"].active {
+    background: gold;
+    box-shadow: 0 0 10px gold;
+}
+
+/* Bordures des cartes selon catégorie */
+.product-card[data-category="vip"] {
+    border: 1px solid #8b5cf6;
+}
+
+.product-card[data-category="event"] {
+    border: 1px solid #3b82f6;
+}
+
+.product-card[data-category="staff"] {
+    border: 1px solid #ef4444;
+}
+
