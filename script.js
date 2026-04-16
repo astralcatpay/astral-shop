@@ -10,11 +10,11 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => transition.classList.remove("active"), 100);
 
     document.querySelectorAll("a").forEach(link => {
-        // On ignore les boutons limités (First Cat)
         if (link.href && !link.href.includes("#") && !link.classList.contains("limited-btn")) {
 
             link.addEventListener("click", e => {
                 const url = link.href;
+
                 if (!url) return;
 
                 e.preventDefault();
@@ -28,12 +28,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // ===========================
-    // FILTRE PAR CATÉGORIE
+    // FILTRE PAR CATÉGORIE (OPERA FIX)
     // ===========================
     document.querySelectorAll(".cat-btn").forEach(btn => {
         btn.addEventListener("click", () => {
-            document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
+
+            document.querySelectorAll(".cat-btn").forEach(b => {
+                b.classList.remove("active", "active-vip", "active-event", "active-staff", "active-all");
+            });
+
             btn.classList.add("active");
+            btn.classList.add("active-" + btn.dataset.category);
 
             const cat = btn.dataset.category;
 
@@ -48,26 +53,21 @@ document.addEventListener("DOMContentLoaded", () => {
     // ===========================
     // STOCK FIRST CAT
     // ===========================
-    const btn = document.querySelector(".limited-btn");
-    const badge = document.getElementById("firstcat-stock");
-
-    if (!btn || !badge) return;
-
     const limit = 3;
     const count = parseInt(localStorage.getItem("buy_firstcat")) || 0;
     const remaining = Math.max(limit - count, 0);
 
-    badge.textContent = remaining > 0 ? `Restant : ${remaining}` : "Épuisé";
+    const badge = document.getElementById("firstcat-stock");
+    const btn = document.querySelector(".limited-btn");
+
+    if (badge) {
+        badge.textContent = remaining > 0 ? `Restant : ${remaining}` : "Épuisé";
+    }
 
     if (remaining <= 0) {
         btn.textContent = "Indisponible";
         btn.style.background = "gray";
         btn.style.cursor = "not-allowed";
         btn.style.pointerEvents = "none";
-        return;
     }
-
-    // IMPORTANT :
-    // PAS DE REDIRECTION PAYPAL ICI.
-    // Le <a href="..."> dans index.html s’en charge.
 });

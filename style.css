@@ -360,7 +360,7 @@ body {
 }
 
 /* ===========================
-   COULEURS PAR CATÉGORIE
+   COULEURS PAR CATÉGORIE (VIP / EVENT / STAFF / ALL)
    =========================== */
 
 /* Boutons catégories */
@@ -396,4 +396,5 @@ body {
 .product-card[data-category="staff"] {
     border: 1px solid #ef4444;
 }
+
 
