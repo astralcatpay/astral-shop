@@ -7,30 +7,21 @@
 
   <link rel="icon" type="image/jpg" href="image.jpg">
   <link rel="stylesheet" href="style.css">
-
-  <style>
-    /* Ligne de séparation premium */
-    .footer-separator {
-        width: 80%;
-        height: 1px;
-        background: gold;
-        margin: 60px auto 20px auto;
-        opacity: 0.5;
-    }
-
-    .creator-footer {
-        text-align: center;
-        font-size: 15px;
-        color: gold;
-        opacity: 0.8;
-        margin-bottom: 40px;
-    }
-  </style>
 </head>
 <body>
 
+<!-- PARTICULES D'OR -->
+<div class="gold-particles">
+  <span style="left:10%; animation-delay:0s;"></span>
+  <span style="left:30%; animation-delay:1s;"></span>
+  <span style="left:50%; animation-delay:2s;"></span>
+  <span style="left:70%; animation-delay:3s;"></span>
+  <span style="left:90%; animation-delay:4s;"></span>
+</div>
+
 <header class="topbar">
   <div class="logo">Astral<span>Shop</span></div>
+
   <nav class="nav">
     <a href="https://discord.gg/akEXaWzhFx" target="_blank">Discord</a>
   </nav>
@@ -45,7 +36,7 @@
     </div>
   </section>
 
-  <!-- CATÉGORIES -->
+  <!-- ⭐⭐ CATÉGORIES ⭐⭐ -->
   <section class="categories">
     <button class="cat-btn active active-all" data-category="all">Tous</button>
     <button class="cat-btn" data-category="vip">Rôles VIP</button>
@@ -56,52 +47,69 @@
   <section id="products" class="section">
     <div class="products-grid">
 
-      <!-- ROIS-MAGES -->
+      <!-- ⭐ STAFF : ROIS-MAGES -->
       <article class="product-card" data-category="staff">
         <div class="product-image">
           <img src="roi_mage.jpg" alt="Rôle Rois-Mages">
         </div>
+
         <h3>Rois-Mages ✨</h3>
-        <p class="product-desc">Rôle modérateur prestigieux sur le serveur Astral Cat.</p>
+        <p class="product-desc">
+          Rôle modérateur prestigieux sur le serveur Astral Cat.
+        </p>
+
         <div class="product-footer">
           <span class="price">20€</span>
           <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=lucas.mathieupro01@gmail.com&item_name=Rois-Mages%20%E2%9C%A8&amount=20&currency_code=EUR&return=https://astralcatpay.github.io/astral-shop/merci.html?role=roi_mage" 
-             class="btn-primary">Acheter</a>
+             class="btn-primary">
+            Acheter
+          </a>
         </div>
       </article>
 
-      <!-- CHOUCHOUS -->
+      <!-- ⭐ VIP : Les chouchous -->
       <article class="product-card" data-category="vip">
         <div class="product-image">
           <img src="nounours.jpg" alt="Les chouchous">
         </div>
+
         <h3>𝐿𝑒𝓈 𝒸𝒽𝑜𝓊𝒸𝒽𝑜𝓊𝓈 🧸</h3>
-        <p class="product-desc">Accès à des événements exclusifs réservés aux membres VIP.</p>
+        <p class="product-desc">
+          Accès à des événements exclusifs réservés aux membres VIP.
+        </p>
+
         <div class="product-footer">
           <span class="price">10€</span>
           <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=lucas.mathieupro01@gmail.com&item_name=Les%20Chouchous&amount=10&currency_code=EUR&return=https://astralcatpay.github.io/astral-shop/merci.html?role=chouchou" 
-             class="btn-primary">Acheter</a>
+             class="btn-primary">
+            Acheter
+          </a>
         </div>
       </article>
 
-      <!-- FIRST CAT -->
+      <!-- ⭐ ÉVÉNEMENTIEL : First Cat -->
       <article class="product-card" data-category="event">
         <div class="product-image">
           <img src="chat.jpg" alt="First Cat">
         </div>
+
         <h3>𝐹𝒾𝓇𝓈𝓉 𝒞𝒶𝓉 ①</h3>
 
         <span class="stock-badge" id="firstcat-stock">Restant : 3</span>
 
-        <p class="product-desc">Rôle événementiel unique. Disponible seulement 3 fois.</p>
+        <p class="product-desc">
+          Rôle événementiel unique. Disponible seulement 3 fois.
+        </p>
 
         <div class="product-footer">
           <span class="price">2€</span>
+
           <a 
             href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=lucas.mathieupro01@gmail.com&item_name=First%20Cat&amount=2&currency_code=EUR&return=https://astralcatpay.github.io/astral-shop/merci.html?role=firstcat"
             class="btn-primary limited-btn">
               Acheter
           </a>
+
         </div>
       </article>
 
@@ -110,10 +118,9 @@
 
 </main>
 
-<!-- LIGNE DE SÉPARATION -->
+<!-- ⭐ FOOTER ⭐ -->
 <div class="footer-separator"></div>
 
-<!-- FOOTER CRÉATEUR -->
 <footer class="creator-footer">
     Créé par <strong>.shadow_master</strong><br>
     et l’équipe <strong>Astral Cat</strong> 🐾

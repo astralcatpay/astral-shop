@@ -28,24 +28,31 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // ===========================
-    // FILTRE PAR CATÉGORIE (OPERA FIX)
+    // FILTRE PAR CATÉGORIE (FULL OPERA SAFE)
     // ===========================
     document.querySelectorAll(".cat-btn").forEach(btn => {
         btn.addEventListener("click", () => {
 
             document.querySelectorAll(".cat-btn").forEach(b => {
-                b.classList.remove("active", "active-vip", "active-event", "active-staff", "active-all");
+                b.classList.remove(
+                    "active",
+                    "active-vip",
+                    "active-event",
+                    "active-staff",
+                    "active-all"
+                );
             });
-
-            btn.classList.add("active");
-            btn.classList.add("active-" + btn.dataset.category);
 
             const cat = btn.dataset.category;
 
+            btn.classList.add("active");
+            btn.classList.add("active-" + cat);
+
             document.querySelectorAll(".product-card").forEach(card => {
-                card.style.display = (cat === "all" || card.dataset.category === cat)
-                    ? "block"
-                    : "none";
+                card.style.display =
+                    (cat === "all" || card.dataset.category === cat)
+                        ? "block"
+                        : "none";
             });
         });
     });
