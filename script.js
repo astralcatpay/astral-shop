@@ -10,11 +10,11 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => transition.classList.remove("active"), 100);
 
     document.querySelectorAll("a").forEach(link => {
+        // On ignore les boutons limités (First Cat)
         if (link.href && !link.href.includes("#") && !link.classList.contains("limited-btn")) {
 
             link.addEventListener("click", e => {
                 const url = link.href;
-
                 if (!url) return;
 
                 e.preventDefault();
@@ -51,16 +51,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const btn = document.querySelector(".limited-btn");
     const badge = document.getElementById("firstcat-stock");
 
-    if (!btn || !badge) return; // Sécurité
+    if (!btn || !badge) return;
 
     const limit = 3;
     const count = parseInt(localStorage.getItem("buy_firstcat")) || 0;
     const remaining = Math.max(limit - count, 0);
 
-    // Mise à jour du badge
     badge.textContent = remaining > 0 ? `Restant : ${remaining}` : "Épuisé";
 
-    // Si plus de stock → bouton bloqué
     if (remaining <= 0) {
         btn.textContent = "Indisponible";
         btn.style.background = "gray";
@@ -69,12 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    // ===========================
-    // REDIRECTION PAYPAL
-    // ===========================
-    btn.addEventListener("click", () => {
-        window.location.href =
-            "https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=lucas.mathieupro01@gmail.com&item_name=First%20Cat&amount=2&currency_code=EUR&return=https://lucasmathieupro01-boop.github.io/astral-shop/merci.html?role=firstcat";
-    });
-
+    // IMPORTANT :
+    // PAS DE REDIRECTION PAYPAL ICI.
+    // Le <a href="..."> dans index.html s’en charge.
 });

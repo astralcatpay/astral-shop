@@ -1,78 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Merci pour votre achat ✨</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/jpg" href="image.jpg">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .merci-box {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid gold;
+            padding: 30px;
+            border-radius: 12px;
+            display: inline-block;
+            box-shadow: 0 0 20px gold;
+            animation: fadeIn 1s ease-out;
+        }
+        h1 {
+            color: gold;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        p {
+            color: white;
+            font-size: 18px;
+        }
+        a.btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 25px;
+            background: gold;
+            color: black;
+            font-weight: bold;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        a.btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px gold;
+        }
+
+        /* Ligne + footer */
+        .footer-separator {
+            width: 80%;
+            height: 1px;
+            background: gold;
+            margin: 60px auto 20px auto;
+            opacity: 0.5;
+        }
+        .creator-footer {
+            text-align: center;
+            font-size: 15px;
+            color: gold;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+<div class="merci-box">
+    <h1>Merci pour votre achat ✨</h1>
+
+    <p id="message">Traitement en cours...</p>
+
+    <p style="margin-top:15px; font-size:17px; color:gold;">
+        Pour recevoir votre rôle, merci d’ouvrir un ticket sur Discord  
+        et d’y envoyer une preuve du paiement.
+    </p>
+
+    <a href="https://discord.gg/akEXaWzhFx" class="btn" target="_blank">Ouvrir un ticket Discord</a>
+
+    <br><br>
+
+    <a href="https://astralcatpay.github.io/astral-shop" class="btn">Retour à la boutique</a>
+</div>
+
+<!-- LIGNE DE SÉPARATION -->
+<div class="footer-separator"></div>
+
+<!-- FOOTER CRÉATEUR -->
+<div class="creator-footer">
+    Créé par <strong>.shadow_master</strong><br>
+    et l’équipe <strong>Astral Cat</strong> 🐾
+</div>
+
+<script>
 document.addEventListener("DOMContentLoaded", () => {
 
-    // ===========================
-    // TRANSITION DE PAGE PREMIUM
-    // ===========================
-    const transition = document.createElement("div");
-    transition.classList.add("page-transition");
-    document.body.appendChild(transition);
+    const params = new URLSearchParams(window.location.search);
+    const role = params.get("role");
 
-    setTimeout(() => transition.classList.remove("active"), 100);
+    const msg = document.getElementById("message");
 
-    document.querySelectorAll("a").forEach(link => {
-        if (link.href && !link.href.includes("#") && !link.classList.contains("limited-btn")) {
+    if (!role) {
+        msg.textContent = "Aucun rôle détecté.";
+        return;
+    }
 
-            link.addEventListener("click", e => {
-                const url = link.href;
+    const messages = {
+        "roi_mage": "Tu es maintenant un membre des Rois-Mages ✨",
+        "chouchou": "Bienvenue parmi Les Chouchous 🧸",
+        "firstcat": "Tu viens d'obtenir le rôle First Cat ① !"
+    };
 
-                if (!url) return;
+    msg.textContent = messages[role] || "Merci pour ton achat !";
 
-                e.preventDefault();
-                transition.classList.add("active");
-
-                setTimeout(() => {
-                    window.location.href = url;
-                }, 300);
-            });
+    // DÉCRÉMENTATION FIRST CAT
+    if (role === "firstcat") {
+        if (!localStorage.getItem("firstcat_paid")) {
+            let count = parseInt(localStorage.getItem("buy_firstcat")) || 0;
+            count++;
+            localStorage.setItem("buy_firstcat", count);
+            localStorage.setItem("firstcat_paid", "yes");
         }
-    });
-
-    // ===========================
-    // FILTRE PAR CATÉGORIE
-    // ===========================
-    document.querySelectorAll(".cat-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-            document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-
-            const cat = btn.dataset.category;
-
-            document.querySelectorAll(".product-card").forEach(card => {
-                card.style.display = (cat === "all" || card.dataset.category === cat)
-                    ? "block"
-                    : "none";
-            });
-        });
-    });
-
-    // ===========================
-    // STOCK FIRST CAT (affichage)
-    // ===========================
-    const limit = 3;
-    const count = parseInt(localStorage.getItem("buy_firstcat")) || 0;
-    const remaining = Math.max(limit - count, 0);
-
-    const badge = document.getElementById("firstcat-stock");
-    const btn = document.querySelector(".limited-btn");
-
-    if (badge) {
-        badge.textContent = remaining > 0 ? `Restant : ${remaining}` : "Épuisé";
     }
-
-    if (remaining <= 0) {
-        btn.textContent = "Indisponible";
-        btn.style.background = "gray";
-        btn.style.cursor = "not-allowed";
-        btn.style.pointerEvents = "none";
-        return; // On bloque le bouton
-    }
-
-    // ===========================
-    // REDIRECTION PAYPAL (clic)
-    // ===========================
-    btn.addEventListener("click", () => {
-        window.location.href =
-            "https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=lucas.mathieupro01@gmail.com&item_name=First%20Cat&amount=2&currency_code=EUR&return=https://lucasmathieupro01-boop.github.io/astral-shop/merci.html?role=firstcat";
-    });
 
 });
+</script>
+
+</body>
+</html>
